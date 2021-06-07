@@ -1,0 +1,17 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: website-server
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: 'false'
+
+spec:
+  rules:
+    - host: www.dockerlabs.de
+      http:
+        paths:
+          - path:
+            backend:
+              serviceName: website-service-cp
+              servicePort: 80

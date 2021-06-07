@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: website-service-lb
+spec:
+  selector:
+    app: website
+    test: service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer
