@@ -1,5 +1,5 @@
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: website-server
@@ -11,7 +11,10 @@ spec:
     - host: www.dockerlabs.de
       http:
         paths:
-          - path:
+          - path: /
+            pathType: Prefix
             backend:
-              serviceName: website-service-cp
-              servicePort: 80
+              service:
+                name: website-service-cp
+                port:
+                  number: 80

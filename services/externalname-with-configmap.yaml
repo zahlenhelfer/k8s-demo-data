@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: externalName
+  namespace: default
+data:
+  siteurl-param: www.kubernetes.io
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: website-service-en
+spec:
+  type: ExternalName
+  valueFrom:
+    configMapKeyRef:
+      name: externalName
+      key: siteurl-param
