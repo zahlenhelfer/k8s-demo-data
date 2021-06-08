@@ -3,6 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: example-pv-claim
 spec:
+  storageClassName: "slow"
   accessModes:
     - ReadWriteOnce
   resources:
