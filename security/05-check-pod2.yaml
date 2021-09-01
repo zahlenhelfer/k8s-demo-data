@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: net-pol-check-2
+spec:
+  containers:
+    - name: bash
+      image: nginx:1.20
