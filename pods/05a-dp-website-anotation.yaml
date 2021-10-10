@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website-deployment
+  annotations:
+    kubernetes.io/change-cause: 'TICKET 777'
+spec:
+  selector:
+    matchLabels:
+      app: website
+      test: service
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: website
+        test: service
+    spec:
+      containers:
+        - name: kuard
+          image: gcr.io/kuar-demo/kuard-amd64:2
+          ports:
+            - containerPort: 8080
