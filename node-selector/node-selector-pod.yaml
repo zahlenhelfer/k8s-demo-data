@@ -2,12 +2,14 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: myfirstpod-1
+  name: special-gpu-pod-ati
 spec:
+  nodeSelector:
+    gpu: ati
   containers:
     - name: nginx
-      image: nginx:1.21
+      image: nginx:1.20
       ports:
         - name: web
-          containerPort: 81
+          containerPort: 80
           protocol: TCP

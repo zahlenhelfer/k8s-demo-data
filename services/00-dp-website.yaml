@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: website-deployment
   annotations:
-    kubernetes.io/change-cause: 'Kuard-Demo für Services'
+    kubernetes.io/change-cause: 'TICKET 666'
 spec:
   selector:
     matchLabels:

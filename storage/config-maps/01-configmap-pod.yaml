@@ -1,0 +1,14 @@
+kind: Pod 
+apiVersion: v1 
+metadata:
+  name: exmaple-config-map
+spec:
+  containers:
+    - name: env-dbserver-configmap
+      image: nginx:1.7.9 
+      env:
+        - name: db_server_address
+          valueFrom:
+            configMapKeyRef:
+              name: example-db-configmap
+              key: database_uri

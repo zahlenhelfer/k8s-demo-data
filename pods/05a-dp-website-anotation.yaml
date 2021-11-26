@@ -3,13 +3,13 @@ kind: Deployment
 metadata:
   name: website-deployment
   annotations:
-    kubernetes.io/change-cause: 'TICKET 777'
+    kubernetes.io/change-cause: 'TICKET 42'
 spec:
   selector:
     matchLabels:
       app: website
       test: service
-  replicas: 4
+  replicas: 10
   template:
     metadata:
       labels:
@@ -18,6 +18,6 @@ spec:
     spec:
       containers:
         - name: kuard
-          image: gcr.io/kuar-demo/kuard-amd64:2
+          image: nginx:1.20
           ports:
             - containerPort: 8080

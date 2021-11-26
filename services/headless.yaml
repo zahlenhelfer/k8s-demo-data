@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: website-service-np
+  name: website-service-anonymus
 spec:
   selector:
     app: website
@@ -10,5 +10,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8080
-      #nodePort: 32333
-  type: NodePort
+  clusterIP: "None"

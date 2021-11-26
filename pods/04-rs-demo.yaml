@@ -3,7 +3,7 @@ kind: ReplicaSet
 metadata:
   name: kuard-rs
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: "kuard"
@@ -12,9 +12,10 @@ spec:
     metadata:
       labels:
         app: "kuard"
-        foo: "bar"
         sla: "gold"
+        foo: "bar"
     spec:
       containers:
         - name: kuard
           image: "gcr.io/kuar-demo/kuard-amd64:2"
+

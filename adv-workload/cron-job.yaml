@@ -1,9 +1,12 @@
-apiVersion: batch/v1beta1
+# until k8s 1.20
+# apiVersion: batch/v1beta1
+# starting with k8s 1.21
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: cronjob-demo
 spec:
-  schedule: "*/5 * * * *"
+  schedule: "*/1 * * * *"
   jobTemplate:
     spec:
       template:

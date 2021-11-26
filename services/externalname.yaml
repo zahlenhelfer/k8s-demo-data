@@ -5,3 +5,21 @@ metadata:
 spec:
   type: ExternalName
   externalName: www.kubernetes.io
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# to check just do:
+# kubectl exec -it pod -- bash
+# curl -v http://website-service-en.default.svc.cluster.local
+#

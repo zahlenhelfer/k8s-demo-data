@@ -1,0 +1,17 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: hostpath-pod
+spec:
+  #nodeName: 'k8s-worker-0'
+  nodeName: 'k8s-worker-1'
+  containers:
+    - name: myfrontend
+      image: nginx
+      volumeMounts:
+      - mountPath: "/var/www/html"
+        name: mypd
+  volumes:
+    - name: mypd
+      persistentVolumeClaim:
+        claimName: hostpath-pv-claim
