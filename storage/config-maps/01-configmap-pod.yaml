@@ -1,11 +1,11 @@
-kind: Pod 
-apiVersion: v1 
+kind: Pod
+apiVersion: v1
 metadata:
-  name: exmaple-config-map
+  name: example-configmap-pod
 spec:
   containers:
     - name: env-dbserver-configmap
-      image: nginx:1.7.9 
+      image: nginx:1.22
       env:
         - name: db_server_address
           valueFrom:
