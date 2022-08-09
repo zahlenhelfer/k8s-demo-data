@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-test-pod
+spec:
+  containers:
+    - name: webservice
+      image: nginx
+  initContainers:
+    - name: beforewestart
+      image: busybox
+      command: ['/bin/sh', '-ec', 'sleep 10']

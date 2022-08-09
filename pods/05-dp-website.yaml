@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: website-deployment
+  labels:
+    app: website
+    test: service
 spec:
   selector:
     matchLabels:
@@ -16,6 +19,6 @@ spec:
     spec:
       containers:
         - name: kuard
-          image: gcr.io/kuar-demo/kuard-amd64:2
+          image: gcr.io/kuar-demo/kuard-amd64:1
           ports:
             - containerPort: 8080
