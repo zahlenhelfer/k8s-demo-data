@@ -7,7 +7,7 @@ spec:
     - name: "kuard-data"
       nfs:
         server: nfs.dockerlabs.de
-        path: "/var/nfs/general"
+        path: "/srv/nfs/general"
   containers:
     - image: gcr.io/kuar-demo/kuard-amd64:1
       name: kuard
