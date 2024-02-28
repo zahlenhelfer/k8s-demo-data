@@ -4,16 +4,16 @@ metadata:
   name: kuard-local-storage
 spec:
   volumes:
-    - name: 'kuard-data'
+    - name: 'www-data'
       hostPath:
-        path: '/var/lib/kuard'
+        path: '/var/lib/www-data'
   containers:
-    - image: gcr.io/kuar-demo/kuard-amd64:1
+    - image: nginx:1.23
       name: kuard
       volumeMounts:
-        - mountPath: '/data'
-          name: 'kuard-data'
+        - mountPath: '/usr/share/nginx/html'
+          name: 'www-data'
       ports:
-        - containerPort: 8080
+        - containerPort: 80
           name: http
           protocol: TCP
