@@ -1,0 +1,43 @@
+# Download the IAM policy document from GitHub
+curl -o iam-policy-example.json https://raw.githubusercontent.com/kubernetes-sigs/aws-efs-csi-driver/master/docs/iam-policy-example.json
+
+# create the policy
+aws iam create-policy \
+    --policy-name AmazonEKS_EFS_CSI_Driver_Policy \
+    --policy-document file://iam-policy-example.json
+
+# (optional)
+eksctl utils associate-iam-oidc-provider --region=eu-central-1 --cluster=my-cluster --approve
+
+# Create an IAM role and attach the IAM policy to it. Annotate the Kubernetes service account with the IAM role ARN and the IAM role with the Kubernetes service account name
+eksctl create iamserviceaccount \
+    --cluster my-cluster \
+    --namespace kube-system \
+    --name efs-csi-controller-sa \
+    --attach-policy-arn arn:aws:iam::589905756388:policy/AmazonEKS_EFS_CSI_Driver_Policy \
+    --approve \
+    --region eu-central-1
+
+# Install the Amazon EFS driver (via Helm)
+helm upgrade -i aws-efs-csi-driver aws-efs-csi-driver/aws-efs-csi-driver \
+    --namespace kube-system \
+    --set image.repository=602401143452.dkr.ecr.eu-central-1.amazonaws.com/eks/aws-efs-csi-driver \
+    --set controller.serviceAccount.create=false \
+    --set controller.serviceAccount.name=efs-csi-controller-sa
+
+# Create an Amazon EFS file system
+
+# add a dynamic provisioning to EFS
+curl -o storageclass.yaml https://raw.githubusercontent.com/kubernetes-sigs/aws-efs-csi-driver/master/examples/kubernetes/dynamic_provisioning/specs/storageclass.yaml
+
+# Edit the FS-ID in storageclass.yaml (fileSystemId: fs-0f2a8a69163a28230)
+
+# Deploy storageclass
+kubectl apply -f storageclass.yaml
+
+# Test with PVC and provider
+kubectl apply -f 01-.yaml
+kubectl apply -f 02-pod.yaml
+
+# Jump into Container and test
+kubectl exec efs-app -- bash -c "cat data/out"

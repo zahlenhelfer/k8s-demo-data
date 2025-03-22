@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: special-gpu-pod-ati
+  name: special-gpu-pod-nvidia
 spec:
   nodeSelector:
-    gpu: ati
+    gpu: nvidia
   containers:
     - name: nginx
       image: nginx:1.20

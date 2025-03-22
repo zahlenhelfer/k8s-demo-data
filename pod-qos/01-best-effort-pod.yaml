@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: qos-best-effort-pod
+  namespace: qos-demo
+spec:
+  nodeName: k8s-node-1
+  containers:
+  - name: nginx
+    image: nginx:1.24

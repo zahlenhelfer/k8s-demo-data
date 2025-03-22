@@ -1,0 +1,16 @@
+apiVersion: com.test.db/v1
+kind: PostgresDB
+metadata:
+  name: my-test-db
+  namespace: cell-towers
+spec:
+  storage: 20G
+  db_name: testdb
+  users:
+    - admin
+    - peter
+    - paul
+    - marry
+  index_opt: weekly
+  backup: daily
+  postgres_version: 10

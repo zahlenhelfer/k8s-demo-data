@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: special-gpu-pod-2
+spec:
+  nodeSelector:
+    gpu: ati
+  containers:
+    - name: nginx
+      image: nginx:1.20
+      ports:
+        - name: web
+          containerPort: 80
+          protocol: TCP

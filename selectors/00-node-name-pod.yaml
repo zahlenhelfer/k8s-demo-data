@@ -4,7 +4,7 @@ kind: Pod
 metadata:
   name: node-name-example
 spec:
-  nodeName: "k8s-worker-1"
+  nodeName: "k8s-node-0"
   containers:
     - name: nginx
       image: nginx:1.20

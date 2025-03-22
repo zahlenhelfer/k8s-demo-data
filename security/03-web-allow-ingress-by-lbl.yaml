@@ -7,5 +7,4 @@ spec:
   podSelector:
     matchLabels:
       app: web
-  ingress:
-  - {}
+  ingress: [{}]

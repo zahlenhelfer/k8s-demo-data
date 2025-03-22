@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,6 +16,8 @@ spec:
       labels:
         app: website
         test: service
+        sla: high
+        project: XYZ
     spec:
       containers:
         - name: kuard

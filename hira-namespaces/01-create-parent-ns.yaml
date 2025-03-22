@@ -1,0 +1,5 @@
+# kubectl create namespace team-a
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: team-a

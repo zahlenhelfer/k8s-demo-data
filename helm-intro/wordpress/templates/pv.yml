@@ -1,0 +1,18 @@
+# Create PersistentVolume
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: wordpress-persistent-volume
+  labels:
+    app: wordpress
+    tier: frontend
+spec:
+  storageClassName: wordpress-data
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: nfs.dockerlabs.de
+    # Exported path of your NFS server
+    path: '/var/nfs/wordpress'

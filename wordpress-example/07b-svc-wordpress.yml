@@ -1,0 +1,17 @@
+---
+# create a service for wordpress
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-svc
+  namespace: wordpress-stack
+  labels:
+    app.kubernetes.io/name: wordpress
+    app.kubernetes.io/component: frontend
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: wordpress
+    tier: frontend
+  type: ClusterIP

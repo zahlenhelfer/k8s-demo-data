@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: persistent-volume-0003
+  name: persistent-volume-0815
 spec:
   capacity:
     storage: 3Gi
@@ -10,9 +10,9 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Recycle
   storageClassName: slow
-  mountOptions:
-    - hard
-    - nfsvers=4.1
   nfs:
     path: /srv/nfs/kubedata
     server: nfs.dockerlabs.de
+  mountOptions:
+    - hard
+    - nfsvers=4.1

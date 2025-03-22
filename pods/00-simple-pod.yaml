@@ -1,13 +1,19 @@
----
 apiVersion: v1
 kind: Pod
 metadata:
-  name: myfirstpod-1
+  name: nginx-pod
+  labels:
+    env: production
+    sla: gold
+    betreuer: Marcus
+    project: pikachu
+    dsgvo: ja
+    costcenter: "88"
 spec:
   containers:
-    - name: nginx
-      image: nginx:1.21
+    - name: nginx-webserver
+      image: nginx:1.27
       ports:
         - name: web
-          containerPort: 81
+          containerPort: 80
           protocol: TCP

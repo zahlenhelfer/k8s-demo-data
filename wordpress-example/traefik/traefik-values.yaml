@@ -1,0 +1,4 @@
+hostNetwork: true
+service:
+  externalIPs:
+  - 209.38.188.75

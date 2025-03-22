@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-persistent-volume
+  labels:
+    app: wordpress
+    tier: mysql
+spec:
+  storageClassName: mysql-data
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: nfs.dockerlabs.de
+    # Exported path of your NFS server
+    path: '/var/nfs/mysql'

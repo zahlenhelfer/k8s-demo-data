@@ -5,7 +5,8 @@ metadata:
 spec:
   selector:
     app: website
-    test: service
+    test: servize
+    project: XYZ
   ports:
     - protocol: TCP
       port: 80

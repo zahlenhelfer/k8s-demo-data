@@ -1,3 +1,6 @@
 controller:
   hostNetwork: true
   kind: DaemonSet
+  ingressClassResource:
+    enabled: true
+    default: true

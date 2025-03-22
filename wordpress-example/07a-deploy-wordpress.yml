@@ -1,0 +1,54 @@
+# for versions before 1.9.0 use apps/v1beta2
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-dp
+  namespace: wordpress-stack
+  labels:
+    app: wordpress
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/name: wordpress
+spec:
+  selector:
+    matchLabels:
+      app: wordpress
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wordpress
+        tier: frontend
+    spec:
+      serviceAccount: wordpress-sa
+      containers:
+      - image: wordpress:4.9-apache
+        name: wordpress
+        resources:
+          limits:
+            memory: '1Gi'
+            cpu: "1"
+        env:
+        - name: WORDPRESS_DB_HOST
+          # possible to hardcode value: 10.101.79.204
+          # or using the dns-name of the service value: wordpress-mysql
+          valueFrom: # but we use a ConfigMap here
+            configMapKeyRef:
+              name: wordpress-config # The ConfigMap this value comes from.
+              key: WORDPRESS_DB_HOST # The key to fetch.
+        - name: WORDPRESS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass # generated before in secret.yml
+              key: password
+        ports:
+        - containerPort: 80
+          name: wordpress
+        volumeMounts:
+        - name: wordpress-persistent-storage
+          mountPath: '/var/www/html' # which data will be stored
+      volumes:
+      - name: wordpress-persistent-storage
+        persistentVolumeClaim:
+          claimName: wordpress-pvc

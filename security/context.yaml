@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1000
+  containers:
+    - image: nginx:1.22
+      name: nginx
+      securityContext:
+        readOnlyRootFilesystem: true
+        allowPrivilegeEscalation: true

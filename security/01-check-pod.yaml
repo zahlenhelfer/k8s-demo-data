@@ -8,4 +8,4 @@ metadata:
 spec:
   containers:
     - name: bash
-      image: nginx:1.20
+      image: nginx:1.27

@@ -1,0 +1,11 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: view-role
+  namespace: team-a
+labels:
+  hnc.x-k8s.io/inherited: "true" # Allows propagation to child namespaces
+rules:
+- apiGroups: [ "" ]
+  resources: [ "pods" ]
+  verbs: [ "get", "list", "watch" ]

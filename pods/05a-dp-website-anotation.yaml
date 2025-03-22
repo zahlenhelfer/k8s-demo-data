@@ -3,13 +3,13 @@ kind: Deployment
 metadata:
   name: website-deployment
   annotations:
-    kubernetes.io/change-cause: 'TICKET 42'
+    kubernetes.io/change-cause: 'JIRA 4711'
 spec:
   selector:
     matchLabels:
       app: website
       test: service
-  replicas: 10
+  replicas: 3
   template:
     metadata:
       labels:

@@ -6,7 +6,9 @@ kind: CronJob
 metadata:
   name: cronjob-demo
 spec:
+  concurrencyPolicy: Forbid
   schedule: "*/1 * * * *"
+  successfulJobsHistoryLimit: 5
   jobTemplate:
     spec:
       template:

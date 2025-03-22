@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ephemeral-container-example
+spec:
+  containers:
+  - name: main-container
+    image: nginx
+    ports:
+    - containerPort: 80
+  ephemeralContainers:
+  - name: debug-container
+    image: busybox
+    command: ["/bin/sh"]
+    args: ["-c", "sleep 3600"]
